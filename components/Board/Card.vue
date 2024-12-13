@@ -31,29 +31,26 @@ const actions = ref([
 </script>
 <template>
   <div class="shadow dark:bg-gray-800 rounded-lg overflow-hidden relative">
-    <div v-if="board.coverImage" class="h-36 w-full relative z-[1]">
-      <!-- :src="board.coverImage" -->
-      <NuxtImg
-        :alt="board.name"
-        class="h-full w-full absolute object-cover z-[1]"
-      />
+    <div v-if="true" class="h-36 w-full relative z-[1]">
+
+
       <div
         class="absolute w-full h-full z-[2] bg-gradient-to-b from-black/90 to-transparent"
       ></div>
     </div>
 
     <div class="flex items-center gap-2 absolute left-0 z-10 top-0 py-2 px-4">
-      <NuxtLink
+      <!-- <NuxtLink
         :to="{
           name: 'boardId',
-          params: { boardId: board.name },
+          params: { boardId: board },
         }"
         class="block font-semibold text-white"
-        >{{ board.name }}
+        >{{ board }}
       </NuxtLink>
       <UDropdown :items="actions">
         <UIcon name="i-heroicons-cog-6-tooth" class="text-white"></UIcon>
-      </UDropdown>
+      </UDropdown> -->
     </div>
   </div>
 </template>

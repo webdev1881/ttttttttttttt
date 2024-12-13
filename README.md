@@ -73,3 +73,4 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Check out the [deployment documentation](git clone https://github.com/jahidanowar/nuxt-trello.git) for more information.

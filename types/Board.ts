@@ -1,9 +1,9 @@
 import type { ListDocument } from "./List";
 
-export interface BoardDocument extends Document {
+export interface BoardDocument {
+  id: string;
   name: string;
-  lists: string[] | ListDocument[];
-  owner: string;
-  coverImage: string;
+  cards?: string[] | ListDocument[];
+  // coverImage: string;
 }
 

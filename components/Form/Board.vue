@@ -8,6 +8,8 @@ interface Props {
   onCreate?: (data?: any) => void;
 }
 
+const boardStore = useBoardStore()
+
 const porps = withDefaults(defineProps<Props>(), {
   type: "create",
 });
@@ -31,8 +33,10 @@ watchEffect(() => {
 });
 
 async function handleSubmit() {
-  console.log(formState.name);
-  localStorage.setItem("name", formState.name);
+  // porps.onCreate?.(data);
+  console.log(porps.type);
+  // localStorage.setItem("name", formState.name);
+  boardStore.setBoard({id: Date.now(), name: formState.name});
   porps.onCreate?.(formState.name);
   
 }

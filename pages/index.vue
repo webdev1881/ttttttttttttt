@@ -6,11 +6,16 @@ useHead({
   title: "Boards",
 });
 
-const refresh = [ { name: "John Doe" } ]
+const boardStore = useBoardStore()
 
-console.log();
+// const boards = [ { name: "John Doe" } ]
+const boards = computed(() => boardStore.getBoards)
 
-provide("refresh-boards", refresh);
+// const board = useStore()
+
+// console.log(board.name);
+
+provide("refresh-boards", boards);
 
 const showCreateBoard = ref(false);
 const selectedBoard = ref<BoardDocument | undefined>();
@@ -19,6 +24,12 @@ async function handleEdit(board: BoardDocument) {
   selectedBoard.value = board;
   showCreateBoard.value = true;
 }
+
+watchEffect(() => {
+  if (!showCreateBoard.value) {
+    selectedBoard.value = undefined;
+  }
+});
 
 </script>
 <template>
@@ -31,6 +42,8 @@ async function handleEdit(board: BoardDocument) {
       <UButton size="xs" @click="showCreateBoard = !showCreateBoard"
         >Create new board</UButton
       >
+
+      {{boards}}
 
 
     <!-- Sidesheet  -->
@@ -46,6 +59,7 @@ async function handleEdit(board: BoardDocument) {
         :on-create="
           () => {
             showCreateBoard = false;
+            return  boards
             // refresh();
           }
         "
@@ -56,11 +70,11 @@ async function handleEdit(board: BoardDocument) {
     <!-- List of boards -->
     <section class="grid grid-cols-2 lg:grid-cols-5 my-4 gap-4">
       <BoardCard
-        v-for="board in refresh"
-        :key="board.name"
-
+        v-for="board in boards"
+        :key="board.id"
+        :board="board"
         :on-edit="handleEdit"
-      >{{board.name}}</BoardCard>
+      ></BoardCard>
     </section>
     <!-- ./ List of boards -->
   </div>
