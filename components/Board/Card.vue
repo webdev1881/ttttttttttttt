@@ -6,6 +6,7 @@ interface Props {
   onEdit?: (board: BoardDocument) => void;
 }
 const props = defineProps<Props>();
+const boardStore = useBoardStore()
 
 // const { destroy } = useBoard();
 const refreshBoards = inject("refresh-boards") as () => void;
@@ -17,6 +18,7 @@ const actions = ref([
       icon: "i-heroicons-pencil",
       click: () => {
         props.onEdit?.(props.board);
+        // boardStore.update(props.board.id);
       },
     },
   ],
@@ -46,11 +48,12 @@ const actions = ref([
           params: { boardId: board },
         }"
         class="block font-semibold text-white"
-        >{{ board }}
-      </NuxtLink>
+        >
+      </NuxtLink> -->
+      {{ board.name }}
       <UDropdown :items="actions">
         <UIcon name="i-heroicons-cog-6-tooth" class="text-white"></UIcon>
-      </UDropdown> -->
+      </UDropdown>
     </div>
   </div>
 </template>

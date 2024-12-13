@@ -63,6 +63,13 @@ watchEffect(() => {
             // refresh();
           }
         "
+        :on-update="
+          () => {
+            showCreateBoard = false;
+            selectedBoard = undefined;
+            return  boards
+          }
+        "
       />
     </USlideover>
     <!-- ./ Sidesheet  -->

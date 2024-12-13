@@ -13,8 +13,10 @@ export const useBoardStore = defineStore('board', {
         setBoard(board: BoardDocument) {
             this.boards.push( board )
         },
-        refresh() {
-
+        update(id) {
+            const res = this.boards.filter(el =>  el === id  )
+            console.log( res );
+            
         }
     },
     getters: {
