@@ -33,6 +33,9 @@ watchEffect(() => {
 });
 
 async function handleSubmit() {
+  if (porps.type === "update" ) {
+
+  }
   // porps.onCreate?.(data);
   console.log(porps.type);
   // localStorage.setItem("name", formState.name);
