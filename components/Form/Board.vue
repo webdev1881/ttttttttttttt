@@ -23,24 +23,26 @@ const formState = reactive<Partial<BoardDocument>>({
 watchEffect(() => {
   if (porps.type === "update" && porps.initialData) {
     formState.name = porps.initialData.name;
-    // formState.coverImage = porps.initialData.coverImage;
+
   }
 
   if (porps.type === "create") {
     formState.name = undefined;
-    // formState.coverImage = undefined;
+
   }
 });
 
 async function handleSubmit() {
   if (porps.type === "update" ) {
-
+    porps.onUpdate?.(porps.initialData);
+    boardStore.update(porps.initialData, formState.name);
+    return
   }
-  // porps.onCreate?.(data);
-  console.log(porps.type);
+  porps.onCreate?.(porps.initialData);
+  // console.log(porps.initialData);
   // localStorage.setItem("name", formState.name);
   boardStore.setBoard({id: Date.now(), name: formState.name});
-  porps.onCreate?.(formState.name);
+
   
 }
 

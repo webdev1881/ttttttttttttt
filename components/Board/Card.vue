@@ -18,16 +18,17 @@ const actions = ref([
       icon: "i-heroicons-pencil",
       click: () => {
         props.onEdit?.(props.board);
-        // boardStore.update(props.board.id);
       },
     },
   ],
   [
-    // {
-    //   label: "Delete",
-    //   icon: "i-heroicons-trash",
-    //   click: () => destroy(props.board.name, refreshBoards),
-    // },
+    {
+      label: "Delete",
+      icon: "i-heroicons-trash",
+      click: () => {
+        boardStore.deleteBoard( props.board );
+      },
+    },
   ],
 ]);
 </script>
@@ -45,7 +46,7 @@ const actions = ref([
       <!-- <NuxtLink
         :to="{
           name: 'boardId',
-          params: { boardId: board },
+          params: { 'boardId': board.id },
         }"
         class="block font-semibold text-white"
         >

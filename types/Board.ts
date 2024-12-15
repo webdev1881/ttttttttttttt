@@ -1,9 +1,8 @@
 import type { ListDocument } from "./List";
 
 export interface BoardDocument {
-  id: string;
-  name: string;
+  id: number;
+  name: string | undefined;
   cards?: string[] | ListDocument[];
-  // coverImage: string;
 }
 

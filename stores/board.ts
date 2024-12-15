@@ -1,25 +1,37 @@
 import type { BoardDocument } from "~/types/Board";
 
+
 export const useBoardStore = defineStore('board', {
+
 
 
     state: () => {
         return {
-            boards: [],
+            boards: <BoardDocument[]>[],
             cards: [],
         }
     },
     actions: {
         setBoard(board: BoardDocument) {
-            this.boards.push( board )
+            this.boards.push( unref(board) )
+            localStorage.setItem("boards", JSON.stringify(this.boards));
         },
-        update(id) {
-            const res = this.boards.filter(el =>  el === id  )
-            console.log( res );
-            
-        }
+        update(board: BoardDocument, name: string) {
+            this.boards.map(el => {
+                if (el.id === board.id) {
+                    el.name = name
+                }
+            })           
+        },
+        deleteBoard(board: BoardDocument) {
+            this.boards = this.boards.filter(el => el.id !== board.id)
+        },
     },
     getters: {
-        getBoards: (state) => state.boards,
+        getBoards: (state) => {
+            console.log(JSON.parse(localStorage.getItem('boards')));
+            
+            state.boards = JSON.parse(localStorage.getItem('boards') || '[]');
+        },
     },
 })
