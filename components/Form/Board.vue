@@ -59,6 +59,8 @@ async function handleSubmit() {
       <UInput v-model="formState.name" type="text" placeholder="Board name" />
     </UFormGroup>
 
+    {{ initialData }}
+
     <!-- <UFormGroup class="mb-4" name="coverImage" label="Select cover image">
       <ImagePicker v-model="formState.coverImage" />
     </UFormGroup> -->

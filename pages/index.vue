@@ -31,9 +31,9 @@ watchEffect(() => {
   }
 });
 
-onMounted(() => {
-  boardStore.getBoards
-})
+// onMounted(() => {
+//   boardStore.getBoards
+// })
 
 </script>
 <template>
